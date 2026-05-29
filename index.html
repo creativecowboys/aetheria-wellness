@@ -176,7 +176,7 @@ tailwind.config = {
     <!-- Navigation Bar -->
     <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 md:px-16 pointer-events-none">
       <nav class="w-full max-w-[1728px] pointer-events-auto">
-        <div class="flex items-center justify-between bg-brand-secondary/90 backdrop-blur-md rounded-full shadow-nav border border-border-soft px-4 py-2 h-[56px] w-full glass-panel">
+        <div class="flex items-center justify-between bg-brand-secondary/90 backdrop-blur-md rounded-full shadow-nav border border-border-soft px-4 py-2 h-[64px] md:h-[56px] w-full glass-panel">
           <!-- Logo -->
           <a href="/" class="flex items-center ml-4">
             <span class="text-brand-primary font-serif text-2xl font-semibold tracking-widest uppercase leading-tight">Aetheria</span>
@@ -193,7 +193,7 @@ tailwind.config = {
           <!-- Actions -->
           <div class="flex items-center gap-2">
             <!-- Soundscape Player Toggle -->
-            <button id="soundscape-btn" class="flex items-center gap-2 bg-brand-secondary border border-border-soft hover:border-brand-primary/30 text-brand-primary rounded-full px-3 py-1.5 text-xs font-semibold transition-all">
+            <button id="soundscape-btn" class="flex items-center gap-2 bg-brand-secondary border border-border-soft hover:border-brand-primary/30 text-brand-primary rounded-full px-3 py-2.5 sm:py-1.5 text-xs font-semibold transition-all min-h-[44px] sm:min-h-0">
               <div class="flex items-center gap-[2px] h-3 w-4 justify-center" id="soundscape-bars">
                 <span class="bar bg-brand-primary w-[2px] h-3 rounded-full transition-all duration-300 scale-y-50 origin-bottom"></span>
                 <span class="bar bg-brand-primary w-[2px] h-3 rounded-full transition-all duration-300 scale-y-25 origin-bottom"></span>
@@ -204,13 +204,38 @@ tailwind.config = {
             </button>
 
             <!-- CTA Button -->
-            <a href="#book" class="bg-brand-primary text-brand-secondary rounded-full px-5 py-2 text-sm font-medium hover:opacity-90 transition-opacity">
+            <a href="#book" class="bg-brand-primary text-brand-secondary rounded-full px-4 sm:px-5 py-2.5 sm:py-2 text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity min-h-[44px] sm:min-h-0 flex items-center justify-center">
               Begin Journey
             </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-toggle" class="flex md:hidden items-center justify-center bg-brand-secondary border border-border-soft hover:border-brand-primary/30 text-brand-primary rounded-full p-2 h-11 w-11 transition-all" aria-label="Toggle Menu">
+              <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+              <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
           </div>
         </div>
       </nav>
     </header>
+
+    <!-- Mobile Menu Drawer (Overlay) -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-brand-secondary/95 backdrop-blur-lg flex flex-col justify-center items-center gap-8 transition-all duration-300 opacity-0 pointer-events-none translate-y-[-10px] md:hidden">
+      <nav class="flex flex-col items-center gap-6">
+        <a href="#sanctuary" class="mobile-nav-link text-brand-primary font-serif text-2xl font-medium tracking-wide">The Sanctuary</a>
+        <a href="#experiences" class="mobile-nav-link text-brand-primary font-serif text-2xl font-medium tracking-wide">Experiences</a>
+        <a href="#nourishment" class="mobile-nav-link text-brand-primary font-serif text-2xl font-medium tracking-wide">Nourishment</a>
+        <a href="#contact" class="mobile-nav-link text-brand-primary font-serif text-2xl font-medium tracking-wide">Sanctuaries</a>
+      </nav>
+      <div class="flex flex-col items-center gap-4 mt-8 w-full max-w-[280px] px-4">
+        <a href="#book" class="mobile-nav-link bg-brand-primary text-brand-secondary rounded-full px-8 py-3.5 text-center text-sm font-semibold shadow-cta w-full block">
+          Begin Journey
+        </a>
+      </div>
+    </div>
 
     <main class="flex-grow">
       <section class="relative w-full flex flex-col items-center overflow-visible">
@@ -218,25 +243,25 @@ tailwind.config = {
         <!-- Background Hero Image -->
         <div class="absolute top-0 left-0 w-full h-[825px] z-10 overflow-hidden">
           <div class="absolute inset-0 bg-black/40 z-[11]"></div>
-          <img src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?w=1920&amp;h=1080&amp;fit=crop" alt="Serene luxury infinity pool in nature" class="w-full h-full object-cover">
+          <img src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?w=1920&amp;h=1080&amp;fit=crop" alt="Serene luxury infinity pool in nature" class="w-full h-full object-cover" fetchpriority="high">
         </div>
 
         <!-- Hero Content -->
         <div class="relative z-20 flex flex-col items-center justify-center w-full max-w-[1728px] h-[825px] pt-[75px] pb-[168px] px-6 md:px-16">
           <div class="max-w-[1100px] text-center mb-10" data-animation-on-scroll="">
-            <h1 class="text-text-on-dark font-serif text-6xl md:text-8xl text-tight font-medium" data-animate-heading="">
+            <h1 class="text-text-on-dark font-serif text-4xl sm:text-5xl md:text-8xl text-tight font-medium" data-animate-heading="">
               Reconnect with the Elements
             </h1>
-            <p class="text-text-on-dark text-lg md:text-xl mt-8 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
+            <p class="text-text-on-dark text-sm sm:text-base md:text-xl mt-6 sm:mt-8 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
               A sanctuary designed to quiet the mind, restore the body, and awaken the spirit. Nestled in nature's embrace.
             </p>
           </div>
           
-          <div class="flex items-center gap-4" data-animation-on-scroll="">
-            <a href="#book" class="bg-brand-primary text-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:opacity-90 transition-colors shadow-cta">
+          <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto px-4 sm:px-0" data-animation-on-scroll="">
+            <a href="#book" class="bg-brand-primary text-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:opacity-90 transition-colors shadow-cta w-full sm:w-auto text-center">
               Begin Your Journey
             </a>
-            <a href="#sanctuary" class="bg-transparent text-brand-secondary border border-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:bg-brand-secondary hover:text-brand-primary transition-all">
+            <a href="#sanctuary" class="bg-transparent text-brand-secondary border border-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:bg-brand-secondary hover:text-brand-primary transition-all w-full sm:w-auto text-center">
               Explore Sanctuary
             </a>
           </div>
@@ -247,7 +272,7 @@ tailwind.config = {
           <div class="grid grid-cols-1 md:grid-cols-3 bg-brand-secondary rounded-xl overflow-hidden shadow-2xl min-h-[500px] w-full border border-border-soft">
             
             <!-- Block 1: The Sanctuary -->
-            <a href="#sanctuary" class="action-block-hover flex flex-col border-r border-border-soft group">
+            <a href="#sanctuary" class="action-block-hover flex flex-col border-b md:border-b-0 md:border-r border-border-soft group">
               <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
                 <div class="flex items-center justify-between w-full">
                   <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">The Sanctuary</span>
@@ -259,13 +284,13 @@ tailwind.config = {
                   Mindfulness &amp; Meditative Science
                 </h4>
               </div>
-              <div class="flex-grow overflow-hidden">
+              <div class="h-[250px] md:h-auto flex-grow overflow-hidden">
                 <img src="https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Meditative state in forest" class="w-full h-full object-cover">
               </div>
             </a>
 
             <!-- Block 2: Experiences -->
-            <a href="#experiences" class="action-block-hover flex flex-col border-r border-border-soft group">
+            <a href="#experiences" class="action-block-hover flex flex-col border-b md:border-b-0 md:border-r border-border-soft group">
               <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
                 <div class="flex items-center justify-between w-full">
                   <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">Experiences</span>
@@ -277,7 +302,7 @@ tailwind.config = {
                   Thermal Springs &amp; Rejuvenation
                 </h4>
               </div>
-              <div class="flex-grow overflow-hidden">
+              <div class="h-[250px] md:h-auto flex-grow overflow-hidden">
                 <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Thermal bath therapy" class="w-full h-full object-cover">
               </div>
             </a>
@@ -295,7 +320,7 @@ tailwind.config = {
                   Organic Culinary &amp; Herbal Alchemy
                 </h4>
               </div>
-              <div class="flex-grow overflow-hidden">
+              <div class="h-[250px] md:h-auto flex-grow overflow-hidden">
                 <img src="https://images.pexels.com/photos/5946623/pexels-photo-5946623.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Herbal tea preparation" class="w-full h-full object-cover">
               </div>
             </a>
@@ -304,12 +329,12 @@ tailwind.config = {
       </section>
 
       <!-- Our Philosophy Section - ZIG (LEFT) -->
-      <section id="sanctuary" class="py-32 px-6 md:px-16 bg-white overflow-hidden">
+      <section id="sanctuary" class="py-20 md:py-32 px-6 md:px-16 bg-white overflow-hidden">
         <div class="max-w-[1728px] mx-auto" data-animation-on-scroll="" data-animation-direction="left">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div>
               <span class="text-brand-primary text-xs uppercase tracking-[0.3em] font-bold block mb-8">The Aetheria Ethos</span>
-              <h2 class="text-5xl md:text-7xl text-tight text-text-primary font-serif mb-10" data-animate-heading="">
+              <h2 class="text-4xl sm:text-5xl md:text-7xl text-tight text-text-primary font-serif mb-10" data-animate-heading="">
                 Where Nature Meets Deep Rejuvenation
               </h2>
               <div class="space-y-6 text-text-secondary text-lg leading-relaxed max-w-xl">
@@ -320,24 +345,24 @@ tailwind.config = {
                   Founded in the pristine wilderness, our retreats are designed to strip away the noise of modern life, helping you realign with the fundamental elements of earth, water, air, and silence.
                 </p>
               </div>
-              <div class="mt-12 flex flex-col sm:flex-row gap-8">
+              <div class="mt-12 grid grid-cols-3 sm:flex sm:flex-row gap-4 sm:gap-12">
                 <div class="flex flex-col">
                   <span class="text-brand-primary text-3xl font-medium mb-1">40</span>
-                  <span class="text-xs uppercase tracking-widest text-text-secondary">Private Acres</span>
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-text-secondary">Private Acres</span>
                 </div>
                 <div class="flex flex-col">
                   <span class="text-brand-primary text-3xl font-medium mb-1">100%</span>
-                  <span class="text-xs uppercase tracking-widest text-text-secondary">Biodynamic Gardens</span>
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-text-secondary">Biodynamic Gardens</span>
                 </div>
                 <div class="flex flex-col">
                   <span class="text-brand-primary text-3xl font-medium mb-1">15+</span>
-                  <span class="text-xs uppercase tracking-widest text-text-secondary">Curated Rituals</span>
+                  <span class="text-[10px] sm:text-xs uppercase tracking-widest text-text-secondary">Curated Rituals</span>
                 </div>
               </div>
             </div>
             <div class="relative">
               <div class="aspect-[4/5] rounded-lg overflow-hidden border border-border-soft">
-                <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&amp;fit=crop&amp;w=800&amp;h=1000&amp;q=80" alt="Serene relaxation lounge with tea" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&amp;fit=crop&amp;w=800&amp;h=1000&amp;q=80" alt="Serene relaxation lounge with tea" class="w-full h-full object-cover" loading="lazy">
               </div>
               <div class="absolute -bottom-12 -left-12 bg-brand-secondary p-10 rounded-lg border border-border-soft shadow-xl hidden md:block max-w-[300px]">
                 <p class="text-brand-primary italic text-lg leading-tight font-serif">
@@ -351,12 +376,12 @@ tailwind.config = {
       </section>
 
       <!-- Experiences Grid - ZAG (RIGHT) -->
-      <section id="experiences" class="relative z-20 py-32 px-6 md:px-16 bg-brand-secondary border-y border-border-soft overflow-hidden">
+      <section id="experiences" class="relative z-20 py-20 md:py-32 px-6 md:px-16 bg-brand-secondary border-y border-border-soft overflow-hidden">
         <div class="max-w-[1728px] mx-auto" data-animation-on-scroll="" data-animation-direction="right">
-          <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div class="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20 gap-6 md:gap-8">
             <div class="max-w-2xl">
               <span class="text-brand-primary text-xs uppercase tracking-[0.3em] font-bold block mb-8">Retreat Experiences</span>
-              <h2 class="text-5xl md:text-7xl text-tight text-text-primary font-serif" data-animate-heading="">
+              <h2 class="text-4xl sm:text-5xl md:text-7xl text-tight text-text-primary font-serif" data-animate-heading="">
                 Curated Journeys of Restoration
               </h2>
             </div>
@@ -368,39 +393,39 @@ tailwind.config = {
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-border-soft border border-border-soft overflow-hidden rounded-lg">
             <!-- Experience 1 -->
-            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+            <div class="bg-white p-6 sm:p-10 group hover:bg-brand-secondary transition-colors">
               <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">01</div>
               <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Thermal Springs &amp; Spa</h3>
               <p class="text-text-secondary text-sm leading-relaxed mb-10">Immerse yourself in mineral-rich waters heated by the Earth's core. Restore circulation and ease physical tension.</p>
-              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                <img src="https://images.unsplash.com/photo-1544811096-89a14f806d55?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Thermal hot springs pool" class="w-full h-full object-cover">
+              <div class="aspect-square rounded-lg overflow-hidden grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.unsplash.com/photo-1544811096-89a14f806d55?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Thermal hot springs pool" class="w-full h-full object-cover" loading="lazy">
               </div>
             </div>
             <!-- Experience 2 -->
-            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+            <div class="bg-white p-6 sm:p-10 group hover:bg-brand-secondary transition-colors">
               <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">02</div>
               <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Mindfulness &amp; Yoga</h3>
               <p class="text-text-secondary text-sm leading-relaxed mb-10">Ground yourself with daily forest yoga, sound healing, and expert-guided Vipassana meditation sessions.</p>
-              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                <img src="https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Meditation and yoga session" class="w-full h-full object-cover">
+              <div class="aspect-square rounded-lg overflow-hidden grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Meditation and yoga session" class="w-full h-full object-cover" loading="lazy">
               </div>
             </div>
             <!-- Experience 3 -->
-            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+            <div class="bg-white p-6 sm:p-10 group hover:bg-brand-secondary transition-colors">
               <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">03</div>
               <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Botanical Culinary Art</h3>
               <p class="text-text-secondary text-sm leading-relaxed mb-10">Nourish your body with organic, farm-to-table plates crafted by our culinary alchemists using local biodynamic herbs.</p>
-              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Gourmet plant-based dish" class="w-full h-full object-cover">
+              <div class="aspect-square rounded-lg overflow-hidden grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Gourmet plant-based dish" class="w-full h-full object-cover" loading="lazy">
               </div>
             </div>
             <!-- Experience 4 -->
-            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+            <div class="bg-white p-6 sm:p-10 group hover:bg-brand-secondary transition-colors">
               <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">04</div>
               <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Holistic Energy Work</h3>
               <p class="text-text-secondary text-sm leading-relaxed mb-10">Experience private sessions of acupuncture, craniosacral therapy, and targeted lymphatic flow massage.</p>
-              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Aromatherapy massage session" class="w-full h-full object-cover">
+              <div class="aspect-square rounded-lg overflow-hidden grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Aromatherapy massage session" class="w-full h-full object-cover" loading="lazy">
               </div>
             </div>
           </div>
@@ -408,15 +433,15 @@ tailwind.config = {
       </section>
 
       <!-- Performance Metric Section - ZIG (LEFT) -->
-      <section id="performance" class="sticky top-0 z-10 min-h-screen flex items-center py-32 px-6 md:px-16 bg-text-primary text-white overflow-hidden">
-        <div class="max-w-[1728px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full" data-animation-on-scroll="" data-animation-direction="left">
+      <section id="performance" class="relative md:sticky top-0 z-10 min-h-fit md:min-h-screen flex items-center py-20 md:py-32 px-6 md:px-16 bg-text-primary text-white overflow-hidden">
+        <div class="max-w-[1728px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full" data-animation-on-scroll="" data-animation-direction="left">
           <div>
             <span class="text-brand-secondary text-xs uppercase tracking-[0.3em] font-bold block mb-8">Sensory Deprivation &amp; Sound Baths</span>
-            <h2 class="text-5xl md:text-7xl text-tight font-serif mb-8" data-animate-heading="">A Symphony of Vibration &amp; Silence</h2>
+            <h2 class="text-4xl sm:text-5xl md:text-7xl text-tight font-serif mb-8" data-animate-heading="">A Symphony of Vibration &amp; Silence</h2>
             <p class="text-white/70 text-lg leading-relaxed mb-12 max-w-xl">
               We utilize custom-engineered sound environments and zero-gravity floatation pools to facilitate deep neurological rest. By combining targeted acoustic frequencies with total sensory silence, we guide your brain into a state of deep theta meditation, releasing chronic mental fatigue.
             </p>
-            <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-white/10 pt-12">
               <div>
                 <h4 class="text-brand-secondary text-xl font-medium mb-2 uppercase tracking-widest">Theta Resonance</h4>
                 <p class="text-white/40 text-sm">Sound baths using Tibetan copper bowls tuned to cellular resonance frequencies.</p>
@@ -429,7 +454,7 @@ tailwind.config = {
           </div>
           <div class="relative">
             <div class="aspect-video rounded-xl overflow-hidden border border-white/10 bg-black shadow-2xl">
-              <img src="https://images.pexels.com/photos/12969403/pexels-photo-12969403.jpeg?w=1200&amp;h=800&amp;fit=crop" alt="Acoustic sound deprivation studio" class="w-full h-full object-cover opacity-60">
+              <img src="https://images.pexels.com/photos/12969403/pexels-photo-12969403.jpeg?w=1200&amp;h=800&amp;fit=crop" alt="Acoustic sound deprivation studio" class="w-full h-full object-cover opacity-60" loading="lazy">
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-20 h-20 rounded-full border border-white/30 flex items-center justify-center backdrop-blur-sm group cursor-pointer hover:bg-white/10 transition-colors">
                   <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
@@ -441,20 +466,20 @@ tailwind.config = {
       </section>
 
       <!-- CTA / Appointment Section - ZAG (RIGHT) -->
-      <section id="book" class="relative z-20 py-32 px-6 md:px-16 bg-neutral-surface overflow-hidden border-y border-border-soft">
+      <section id="book" class="relative z-20 py-20 md:py-32 px-6 md:px-16 bg-neutral-surface overflow-hidden border-y border-border-soft">
         <div class="absolute inset-0 opacity-5 pointer-events-none">
-          <img src="https://images.pexels.com/photos/8472000/pexels-photo-8472000.jpeg?w=1920&amp;fit=crop" alt="Technical background" class="w-full h-full object-cover">
+          <img src="https://images.pexels.com/photos/8472000/pexels-photo-8472000.jpeg?w=1920&amp;fit=crop" alt="Technical background" class="w-full h-full object-cover" loading="lazy">
         </div>
         
         <div class="max-w-[1440px] mx-auto relative z-10">
-          <div class="text-center mb-16" data-animation-on-scroll="" data-animation-direction="right">
+          <div class="text-center mb-12 md:mb-16" data-animation-on-scroll="" data-animation-direction="right">
             <span class="text-brand-primary text-xs uppercase tracking-[0.4em] font-bold block mb-6">Create Your Escape</span>
-            <h2 class="text-5xl md:text-7xl text-tight text-text-primary font-serif mb-6" data-animate-heading="">Tailor Your Sanctuary Journey</h2>
+            <h2 class="text-4xl sm:text-5xl md:text-7xl text-tight text-text-primary font-serif mb-6" data-animate-heading="">Tailor Your Sanctuary Journey</h2>
             <p class="text-text-secondary text-base max-w-xl mx-auto">Select your preferences below to dynamically design your retreat program and view your custom itinerary.</p>
           </div>
 
           <!-- Interactive Planner Grid -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start text-left mt-12 bg-white/40 backdrop-blur-md rounded-2xl border border-border-soft p-8 md:p-12 shadow-xl" data-animation-on-scroll="" data-animation-direction="right">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start text-left mt-12 bg-white/40 backdrop-blur-md rounded-2xl border border-border-soft p-4 md:p-12 shadow-xl" data-animation-on-scroll="" data-animation-direction="right">
             
             <!-- Selector Options (Left) -->
             <div class="space-y-8">
@@ -462,17 +487,17 @@ tailwind.config = {
               <div>
                 <label class="block text-brand-primary text-xs font-bold uppercase tracking-widest mb-3">1. Select Your Journey</label>
                 <div class="grid grid-cols-3 gap-3">
-                  <button type="button" data-type="duration" data-val="3-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-sm active-plan-btn border-brand-primary bg-brand-secondary/50">
-                    <span class="block text-lg font-serif text-brand-primary mb-1">3 Days</span>
-                    <span class="text-xs text-text-secondary">Weekend Reset</span>
+                  <button type="button" data-type="duration" data-val="3-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs sm:text-sm active-plan-btn border-brand-primary bg-brand-secondary/50">
+                    <span class="block text-base sm:text-lg font-serif text-brand-primary mb-1">3 Days</span>
+                    <span class="text-[10px] sm:text-xs text-text-secondary">Weekend Reset</span>
                   </button>
-                  <button type="button" data-type="duration" data-val="5-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-sm">
-                    <span class="block text-lg font-serif text-brand-primary mb-1">5 Days</span>
-                    <span class="text-xs text-text-secondary">Grounding</span>
+                  <button type="button" data-type="duration" data-val="5-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs sm:text-sm">
+                    <span class="block text-base sm:text-lg font-serif text-brand-primary mb-1">5 Days</span>
+                    <span class="text-[10px] sm:text-xs text-text-secondary">Grounding</span>
                   </button>
-                  <button type="button" data-type="duration" data-val="7-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-sm">
-                    <span class="block text-lg font-serif text-brand-primary mb-1">7 Days</span>
-                    <span class="text-xs text-text-secondary">Transformation</span>
+                  <button type="button" data-type="duration" data-val="7-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs sm:text-sm">
+                    <span class="block text-base sm:text-lg font-serif text-brand-primary mb-1">7 Days</span>
+                    <span class="text-[10px] sm:text-xs text-text-secondary">Transformation</span>
                   </button>
                 </div>
               </div>
@@ -481,16 +506,16 @@ tailwind.config = {
               <div>
                 <label class="block text-brand-primary text-xs font-bold uppercase tracking-widest mb-3">2. Choose Focus Area</label>
                 <div class="grid grid-cols-3 gap-3">
-                  <button type="button" data-type="focus" data-val="mind" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs active-plan-btn border-brand-primary bg-brand-secondary/50">
-                    <span class="block text-base font-serif text-brand-primary mb-1">Mindfulness</span>
+                  <button type="button" data-type="focus" data-val="mind" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs active-plan-btn border-brand-primary bg-brand-secondary/50">
+                    <span class="block text-sm sm:text-base font-serif text-brand-primary mb-1">Mindfulness</span>
                     <span class="text-[10px] text-text-secondary">Vipassana &amp; Calm</span>
                   </button>
-                  <button type="button" data-type="focus" data-val="body" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
-                    <span class="block text-base font-serif text-brand-primary mb-1">Restoration</span>
+                  <button type="button" data-type="focus" data-val="body" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-sm sm:text-base font-serif text-brand-primary mb-1">Restoration</span>
                     <span class="text-[10px] text-text-secondary">Thermal Springs &amp; Massage</span>
                   </button>
-                  <button type="button" data-type="focus" data-val="spirit" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
-                    <span class="block text-base font-serif text-brand-primary mb-1">Awakening</span>
+                  <button type="button" data-type="focus" data-val="spirit" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-sm sm:text-base font-serif text-brand-primary mb-1">Awakening</span>
                     <span class="text-[10px] text-text-secondary">Sound &amp; Breathwork</span>
                   </button>
                 </div>
@@ -500,16 +525,16 @@ tailwind.config = {
               <div>
                 <label class="block text-brand-primary text-xs font-bold uppercase tracking-widest mb-3">3. Nourishment Philosophy</label>
                 <div class="grid grid-cols-3 gap-3">
-                  <button type="button" data-type="food" data-val="plant" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs active-plan-btn border-brand-primary bg-brand-secondary/50">
-                    <span class="block text-base font-serif text-brand-primary mb-1">Plant-Based</span>
+                  <button type="button" data-type="food" data-val="plant" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs active-plan-btn border-brand-primary bg-brand-secondary/50">
+                    <span class="block text-sm sm:text-base font-serif text-brand-primary mb-1">Plant-Based</span>
                     <span class="text-[10px] text-text-secondary">Biodynamic Greens</span>
                   </button>
-                  <button type="button" data-type="food" data-val="cleanse" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
-                    <span class="block text-base font-serif text-brand-primary mb-1">Liquid</span>
+                  <button type="button" data-type="food" data-val="cleanse" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-sm sm:text-base font-serif text-brand-primary mb-1">Liquid</span>
                     <span class="text-[10px] text-text-secondary">Cold-Pressed Juices</span>
                   </button>
-                  <button type="button" data-type="food" data-val="organic" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
-                    <span class="block text-base font-serif text-brand-primary mb-1">Organic Wild</span>
+                  <button type="button" data-type="food" data-val="organic" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-2.5 sm:p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-sm sm:text-base font-serif text-brand-primary mb-1">Organic Wild</span>
                     <span class="text-[10px] text-text-secondary">Local Caught Proteins</span>
                   </button>
                 </div>
@@ -551,8 +576,8 @@ tailwind.config = {
               <!-- Reservation Inquiry Form -->
               <form id="retreat-inquiry-form" class="mt-8 pt-6 border-t border-border-soft space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 bg-neutral-background text-text-primary text-sm rounded-lg border border-border-soft focus:outline-none focus:border-brand-primary transition-all">
-                  <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 bg-neutral-background text-text-primary text-sm rounded-lg border border-border-soft focus:outline-none focus:border-brand-primary transition-all">
+                  <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 bg-neutral-background text-text-primary text-base md:text-sm rounded-lg border border-border-soft focus:outline-none focus:border-brand-primary transition-all">
+                  <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 bg-neutral-background text-text-primary text-base md:text-sm rounded-lg border border-border-soft focus:outline-none focus:border-brand-primary transition-all">
                 </div>
                 <button type="submit" class="w-full bg-brand-primary text-brand-secondary rounded-full py-3.5 text-sm font-semibold hover:opacity-90 transition-all cursor-pointer shadow-cta">
                   Send Booking Inquiry
@@ -860,6 +885,39 @@ tailwind.config = {
         } else {
           startAudio();
         }
+      });
+
+      // 5. Mobile Menu Toggle Logic
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      let isMenuOpen = false;
+
+      const toggleMenu = () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+          mobileMenu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          iconOpen.classList.add('hidden');
+          iconClose.classList.remove('hidden');
+          document.body.classList.add('overflow-hidden');
+        } else {
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+          document.body.classList.remove('overflow-hidden');
+        }
+      };
+
+      menuToggle.addEventListener('click', toggleMenu);
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (isMenuOpen) toggleMenu();
+        });
       });
 
     });
