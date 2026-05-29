@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aetheria - Luxury Wellness &amp; Mindfulness Retreat</title>
+  <meta name="description" content="Discover Aetheria, a sanctuary for the senses nestled in nature's embrace. Experience luxury thermal springs, meditation, custom bodywork, and holistic rejuvenation.">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Raleway:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  
+<style type="text/tailwindcss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 p-0;
+  }
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(250, 246, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 123, 92, 0.12);
+}
+
+.glass-panel-dark {
+  background: rgba(45, 42, 38, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 123, 92, 0.08);
+}
+
+/* Subtle grain overlay */
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.action-block-hover img {
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.action-block-hover:hover img {
+  transform: scale(1.03);
+}
+
+.nav-item-hover {
+  transition: all 0.3s ease;
+}
+
+.nav-item-hover:hover {
+  background-color: rgba(198, 123, 92, 0.05);
+  color: #C67B5C;
+}
+
+.text-tight {
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+/* Base Scroll Reveal Classes */
+.animate-on-scroll-hidden {
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Zig-Zag Directional Hidden States */
+.animate-from-left {
+  transform: translateX(-60px);
+}
+
+.animate-from-right {
+  transform: translateX(60px);
+}
+
+.animate-on-scroll-visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+/* Alphabet by Alphabet Animation */
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s cubic-bezier(0.2, 1, 0.3, 1), transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.animate-on-scroll-visible .char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #C67B5C;
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  important: '#app-root',
+  theme: {
+    extend: {
+      colors: {
+        'brand-primary': '#C67B5C',       // Terracotta
+        'brand-secondary': '#FAF6F0',     // Soft Cream
+        'brand-accent': '#6B7B3C',        // Olive Green
+        'neutral-background': '#FAF6F0',
+        'neutral-surface': '#F3ECE0',     // Warm Sand
+        'text-primary': '#2D2A26',        // Deep Warm Charcoal
+        'text-secondary': 'rgba(45, 42, 38, 0.7)',
+        'text-on-dark': '#FAF6F0',
+        'border-soft': 'rgba(198, 123, 92, 0.12)',
+      },
+      fontFamily: {
+        'primary': ['Raleway', 'sans-serif'],
+        'serif': ['Lora', 'serif'],
+      },
+      borderRadius: {
+        'none': '0',
+        'sm': '8px',
+        'md': '16px',
+        'lg': '24px',
+        'xl': '32px',
+        'full': '1000px',
+      },
+      boxShadow: {
+        'nav': '0 4px 24px 0 rgba(198, 123, 92, 0.04)',
+        'cta': '0 10px 30px rgba(198, 123, 92, 0.12)',
+      },
+      spacing: {
+        'section': '120px',
+      }
+    }
+  }
+}
+</script>
+</head>
+<body id="app-root">
+  <div class="font-primary bg-neutral-background text-text-primary overflow-x-hidden min-h-screen flex flex-col w-full relative grain-overlay">
+    
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 md:px-16 pointer-events-none">
+      <nav class="w-full max-w-[1728px] pointer-events-auto">
+        <div class="flex items-center justify-between bg-brand-secondary/90 backdrop-blur-md rounded-full shadow-nav border border-border-soft px-4 py-2 h-[56px] w-full glass-panel">
+          <!-- Logo -->
+          <a href="/" class="flex items-center ml-4">
+            <span class="text-brand-primary font-serif text-2xl font-semibold tracking-widest uppercase leading-tight">Aetheria</span>
+          </a>
+
+          <!-- Desktop Nav Links -->
+          <div class="hidden md:flex items-center gap-1">
+            <a href="#sanctuary" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">The Sanctuary</a>
+            <a href="#experiences" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">Experiences</a>
+            <a href="#nourishment" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">Nourishment</a>
+            <a href="#contact" class="nav-item-hover px-4 py-2 rounded-full text-brand-primary text-sm font-medium">Sanctuaries</a>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-2">
+            <!-- Soundscape Player Toggle -->
+            <button id="soundscape-btn" class="flex items-center gap-2 bg-brand-secondary border border-border-soft hover:border-brand-primary/30 text-brand-primary rounded-full px-3 py-1.5 text-xs font-semibold transition-all">
+              <div class="flex items-center gap-[2px] h-3 w-4 justify-center" id="soundscape-bars">
+                <span class="bar bg-brand-primary w-[2px] h-3 rounded-full transition-all duration-300 scale-y-50 origin-bottom"></span>
+                <span class="bar bg-brand-primary w-[2px] h-3 rounded-full transition-all duration-300 scale-y-25 origin-bottom"></span>
+                <span class="bar bg-brand-primary w-[2px] h-3 rounded-full transition-all duration-300 scale-y-75 origin-bottom"></span>
+                <span class="bar bg-brand-primary w-[2px] h-3 rounded-full transition-all duration-300 scale-y-50 origin-bottom"></span>
+              </div>
+              <span id="soundscape-text" class="hidden sm:inline">Play Soundscape</span>
+            </button>
+
+            <!-- CTA Button -->
+            <a href="#book" class="bg-brand-primary text-brand-secondary rounded-full px-5 py-2 text-sm font-medium hover:opacity-90 transition-opacity">
+              Begin Journey
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-grow">
+      <section class="relative w-full flex flex-col items-center overflow-visible">
+        
+        <!-- Background Hero Image -->
+        <div class="absolute top-0 left-0 w-full h-[825px] z-10 overflow-hidden">
+          <div class="absolute inset-0 bg-black/40 z-[11]"></div>
+          <img src="https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?w=1920&amp;h=1080&amp;fit=crop" alt="Serene luxury infinity pool in nature" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-20 flex flex-col items-center justify-center w-full max-w-[1728px] h-[825px] pt-[75px] pb-[168px] px-6 md:px-16">
+          <div class="max-w-[1100px] text-center mb-10" data-animation-on-scroll="">
+            <h1 class="text-text-on-dark font-serif text-6xl md:text-8xl text-tight font-medium" data-animate-heading="">
+              Reconnect with the Elements
+            </h1>
+            <p class="text-text-on-dark text-lg md:text-xl mt-8 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
+              A sanctuary designed to quiet the mind, restore the body, and awaken the spirit. Nestled in nature's embrace.
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-4" data-animation-on-scroll="">
+            <a href="#book" class="bg-brand-primary text-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:opacity-90 transition-colors shadow-cta">
+              Begin Your Journey
+            </a>
+            <a href="#sanctuary" class="bg-transparent text-brand-secondary border border-brand-secondary rounded-full px-8 py-4 text-base font-semibold hover:bg-brand-secondary hover:text-brand-primary transition-all">
+              Explore Sanctuary
+            </a>
+          </div>
+        </div>
+
+        <!-- Action Blocks (Grid Overlay) -->
+        <div class="relative z-30 w-full max-w-[1728px] px-6 md:px-16 -mt-32">
+          <div class="grid grid-cols-1 md:grid-cols-3 bg-brand-secondary rounded-xl overflow-hidden shadow-2xl min-h-[500px] w-full border border-border-soft">
+            
+            <!-- Block 1: The Sanctuary -->
+            <a href="#sanctuary" class="action-block-hover flex flex-col border-r border-border-soft group">
+              <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
+                <div class="flex items-center justify-between w-full">
+                  <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">The Sanctuary</span>
+                  <svg class="w-5 h-5 text-brand-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                  </svg>
+                </div>
+                <h4 class="text-brand-primary font-serif text-[28px] leading-[1.1] tracking-tight font-medium max-w-[280px]">
+                  Mindfulness &amp; Meditative Science
+                </h4>
+              </div>
+              <div class="flex-grow overflow-hidden">
+                <img src="https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Meditative state in forest" class="w-full h-full object-cover">
+              </div>
+            </a>
+
+            <!-- Block 2: Experiences -->
+            <a href="#experiences" class="action-block-hover flex flex-col border-r border-border-soft group">
+              <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
+                <div class="flex items-center justify-between w-full">
+                  <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">Experiences</span>
+                  <svg class="w-5 h-5 text-brand-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                  </svg>
+                </div>
+                <h4 class="text-brand-primary font-serif text-[28px] leading-[1.1] tracking-tight font-medium max-w-[280px]">
+                  Thermal Springs &amp; Rejuvenation
+                </h4>
+              </div>
+              <div class="flex-grow overflow-hidden">
+                <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Thermal bath therapy" class="w-full h-full object-cover">
+              </div>
+            </a>
+
+            <!-- Block 3: Nourishment -->
+            <a href="#nourishment" class="action-block-hover flex flex-col group">
+              <div class="p-8 h-[180px] flex flex-col justify-between border-b border-border-soft">
+                <div class="flex items-center justify-between w-full">
+                  <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">Nourishment</span>
+                  <svg class="w-5 h-5 text-brand-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                  </svg>
+                </div>
+                <h4 class="text-brand-primary font-serif text-[28px] leading-[1.1] tracking-tight font-medium max-w-[280px]">
+                  Organic Culinary &amp; Herbal Alchemy
+                </h4>
+              </div>
+              <div class="flex-grow overflow-hidden">
+                <img src="https://images.pexels.com/photos/5946623/pexels-photo-5946623.jpeg?w=800&amp;h=1000&amp;fit=crop" alt="Herbal tea preparation" class="w-full h-full object-cover">
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Philosophy Section - ZIG (LEFT) -->
+      <section id="sanctuary" class="py-32 px-6 md:px-16 bg-white overflow-hidden">
+        <div class="max-w-[1728px] mx-auto" data-animation-on-scroll="" data-animation-direction="left">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div>
+              <span class="text-brand-primary text-xs uppercase tracking-[0.3em] font-bold block mb-8">The Aetheria Ethos</span>
+              <h2 class="text-5xl md:text-7xl text-tight text-text-primary font-serif mb-10" data-animate-heading="">
+                Where Nature Meets Deep Rejuvenation
+              </h2>
+              <div class="space-y-6 text-text-secondary text-lg leading-relaxed max-w-xl">
+                <p>
+                  Quiet the mind and ground the body. At Aetheria, we believe that true wellness is a return to natural rhythm. Our sanctuary integrates ancient Eastern healing arts with premium modern thermal therapies to create space for profound release.
+                </p>
+                <p>
+                  Founded in the pristine wilderness, our retreats are designed to strip away the noise of modern life, helping you realign with the fundamental elements of earth, water, air, and silence.
+                </p>
+              </div>
+              <div class="mt-12 flex flex-col sm:flex-row gap-8">
+                <div class="flex flex-col">
+                  <span class="text-brand-primary text-3xl font-medium mb-1">40</span>
+                  <span class="text-xs uppercase tracking-widest text-text-secondary">Private Acres</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-brand-primary text-3xl font-medium mb-1">100%</span>
+                  <span class="text-xs uppercase tracking-widest text-text-secondary">Biodynamic Gardens</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-brand-primary text-3xl font-medium mb-1">15+</span>
+                  <span class="text-xs uppercase tracking-widest text-text-secondary">Curated Rituals</span>
+                </div>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="aspect-[4/5] rounded-lg overflow-hidden border border-border-soft">
+                <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&amp;fit=crop&amp;w=800&amp;h=1000&amp;q=80" alt="Serene relaxation lounge with tea" class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-12 -left-12 bg-brand-secondary p-10 rounded-lg border border-border-soft shadow-xl hidden md:block max-w-[300px]">
+                <p class="text-brand-primary italic text-lg leading-tight font-serif">
+                  "True silence is not the absence of sound, but the presence of connection to the self."
+                </p>
+                <p class="mt-4 text-xs font-bold uppercase tracking-widest text-text-primary">— Elara Vane, Director of Mindfulness</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experiences Grid - ZAG (RIGHT) -->
+      <section id="experiences" class="relative z-20 py-32 px-6 md:px-16 bg-brand-secondary border-y border-border-soft overflow-hidden">
+        <div class="max-w-[1728px] mx-auto" data-animation-on-scroll="" data-animation-direction="right">
+          <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div class="max-w-2xl">
+              <span class="text-brand-primary text-xs uppercase tracking-[0.3em] font-bold block mb-8">Retreat Experiences</span>
+              <h2 class="text-5xl md:text-7xl text-tight text-text-primary font-serif" data-animate-heading="">
+                Curated Journeys of Restoration
+              </h2>
+            </div>
+            <a href="#" class="inline-flex items-center gap-2 text-brand-primary font-bold uppercase tracking-widest text-xs border-b border-brand-primary pb-2 group">
+              View Full Experience Menu
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-border-soft border border-border-soft overflow-hidden rounded-lg">
+            <!-- Experience 1 -->
+            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+              <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">01</div>
+              <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Thermal Springs &amp; Spa</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-10">Immerse yourself in mineral-rich waters heated by the Earth's core. Restore circulation and ease physical tension.</p>
+              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.unsplash.com/photo-1544811096-89a14f806d55?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Thermal hot springs pool" class="w-full h-full object-cover">
+              </div>
+            </div>
+            <!-- Experience 2 -->
+            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+              <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">02</div>
+              <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Mindfulness &amp; Yoga</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-10">Ground yourself with daily forest yoga, sound healing, and expert-guided Vipassana meditation sessions.</p>
+              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.pexels.com/photos/3822906/pexels-photo-3822906.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Meditation and yoga session" class="w-full h-full object-cover">
+              </div>
+            </div>
+            <!-- Experience 3 -->
+            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+              <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">03</div>
+              <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Botanical Culinary Art</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-10">Nourish your body with organic, farm-to-table plates crafted by our culinary alchemists using local biodynamic herbs.</p>
+              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Gourmet plant-based dish" class="w-full h-full object-cover">
+              </div>
+            </div>
+            <!-- Experience 4 -->
+            <div class="bg-white p-10 group hover:bg-brand-secondary transition-colors">
+              <div class="w-12 h-12 rounded-full border border-border-soft flex items-center justify-center mb-10 text-brand-primary">04</div>
+              <h3 class="text-2xl font-serif font-medium mb-4 text-text-primary">Holistic Energy Work</h3>
+              <p class="text-text-secondary text-sm leading-relaxed mb-10">Experience private sessions of acupuncture, craniosacral therapy, and targeted lymphatic flow massage.</p>
+              <div class="aspect-square rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?w=600&amp;h=600&amp;fit=crop" alt="Aromatherapy massage session" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Performance Metric Section - ZIG (LEFT) -->
+      <section id="performance" class="sticky top-0 z-10 min-h-screen flex items-center py-32 px-6 md:px-16 bg-text-primary text-white overflow-hidden">
+        <div class="max-w-[1728px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full" data-animation-on-scroll="" data-animation-direction="left">
+          <div>
+            <span class="text-brand-secondary text-xs uppercase tracking-[0.3em] font-bold block mb-8">Sensory Deprivation &amp; Sound Baths</span>
+            <h2 class="text-5xl md:text-7xl text-tight font-serif mb-8" data-animate-heading="">A Symphony of Vibration &amp; Silence</h2>
+            <p class="text-white/70 text-lg leading-relaxed mb-12 max-w-xl">
+              We utilize custom-engineered sound environments and zero-gravity floatation pools to facilitate deep neurological rest. By combining targeted acoustic frequencies with total sensory silence, we guide your brain into a state of deep theta meditation, releasing chronic mental fatigue.
+            </p>
+            <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
+              <div>
+                <h4 class="text-brand-secondary text-xl font-medium mb-2 uppercase tracking-widest">Theta Resonance</h4>
+                <p class="text-white/40 text-sm">Sound baths using Tibetan copper bowls tuned to cellular resonance frequencies.</p>
+              </div>
+              <div>
+                <h4 class="text-brand-secondary text-xl font-medium mb-2 uppercase tracking-widest">Sensory Release</h4>
+                <p class="text-white/40 text-sm">Sensory deprivation floatation tanks filled with 1,000 lbs of epsom salts to dissolve gravity.</p>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="aspect-video rounded-xl overflow-hidden border border-white/10 bg-black shadow-2xl">
+              <img src="https://images.pexels.com/photos/12969403/pexels-photo-12969403.jpeg?w=1200&amp;h=800&amp;fit=crop" alt="Acoustic sound deprivation studio" class="w-full h-full object-cover opacity-60">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-20 h-20 rounded-full border border-white/30 flex items-center justify-center backdrop-blur-sm group cursor-pointer hover:bg-white/10 transition-colors">
+                  <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA / Appointment Section - ZAG (RIGHT) -->
+      <section id="book" class="relative z-20 py-32 px-6 md:px-16 bg-neutral-surface overflow-hidden border-y border-border-soft">
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+          <img src="https://images.pexels.com/photos/8472000/pexels-photo-8472000.jpeg?w=1920&amp;fit=crop" alt="Technical background" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="max-w-[1440px] mx-auto relative z-10">
+          <div class="text-center mb-16" data-animation-on-scroll="" data-animation-direction="right">
+            <span class="text-brand-primary text-xs uppercase tracking-[0.4em] font-bold block mb-6">Create Your Escape</span>
+            <h2 class="text-5xl md:text-7xl text-tight text-text-primary font-serif mb-6" data-animate-heading="">Tailor Your Sanctuary Journey</h2>
+            <p class="text-text-secondary text-base max-w-xl mx-auto">Select your preferences below to dynamically design your retreat program and view your custom itinerary.</p>
+          </div>
+
+          <!-- Interactive Planner Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start text-left mt-12 bg-white/40 backdrop-blur-md rounded-2xl border border-border-soft p-8 md:p-12 shadow-xl" data-animation-on-scroll="" data-animation-direction="right">
+            
+            <!-- Selector Options (Left) -->
+            <div class="space-y-8">
+              <!-- Selection 1: Journey Type -->
+              <div>
+                <label class="block text-brand-primary text-xs font-bold uppercase tracking-widest mb-3">1. Select Your Journey</label>
+                <div class="grid grid-cols-3 gap-3">
+                  <button type="button" data-type="duration" data-val="3-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-sm active-plan-btn border-brand-primary bg-brand-secondary/50">
+                    <span class="block text-lg font-serif text-brand-primary mb-1">3 Days</span>
+                    <span class="text-xs text-text-secondary">Weekend Reset</span>
+                  </button>
+                  <button type="button" data-type="duration" data-val="5-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-sm">
+                    <span class="block text-lg font-serif text-brand-primary mb-1">5 Days</span>
+                    <span class="text-xs text-text-secondary">Grounding</span>
+                  </button>
+                  <button type="button" data-type="duration" data-val="7-day" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-sm">
+                    <span class="block text-lg font-serif text-brand-primary mb-1">7 Days</span>
+                    <span class="text-xs text-text-secondary">Transformation</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Selection 2: Focus Area -->
+              <div>
+                <label class="block text-brand-primary text-xs font-bold uppercase tracking-widest mb-3">2. Choose Focus Area</label>
+                <div class="grid grid-cols-3 gap-3">
+                  <button type="button" data-type="focus" data-val="mind" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs active-plan-btn border-brand-primary bg-brand-secondary/50">
+                    <span class="block text-base font-serif text-brand-primary mb-1">Mindfulness</span>
+                    <span class="text-[10px] text-text-secondary">Vipassana &amp; Calm</span>
+                  </button>
+                  <button type="button" data-type="focus" data-val="body" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-base font-serif text-brand-primary mb-1">Restoration</span>
+                    <span class="text-[10px] text-text-secondary">Thermal Springs &amp; Massage</span>
+                  </button>
+                  <button type="button" data-type="focus" data-val="spirit" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-base font-serif text-brand-primary mb-1">Awakening</span>
+                    <span class="text-[10px] text-text-secondary">Sound &amp; Breathwork</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Selection 3: Nourishment -->
+              <div>
+                <label class="block text-brand-primary text-xs font-bold uppercase tracking-widest mb-3">3. Nourishment Philosophy</label>
+                <div class="grid grid-cols-3 gap-3">
+                  <button type="button" data-type="food" data-val="plant" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs active-plan-btn border-brand-primary bg-brand-secondary/50">
+                    <span class="block text-base font-serif text-brand-primary mb-1">Plant-Based</span>
+                    <span class="text-[10px] text-text-secondary">Biodynamic Greens</span>
+                  </button>
+                  <button type="button" data-type="food" data-val="cleanse" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-base font-serif text-brand-primary mb-1">Liquid</span>
+                    <span class="text-[10px] text-text-secondary">Cold-Pressed Juices</span>
+                  </button>
+                  <button type="button" data-type="food" data-val="organic" class="planner-btn bg-white border border-border-soft hover:border-brand-primary/40 rounded-xl p-4 text-center transition-all cursor-pointer shadow-sm text-text-primary font-medium text-xs">
+                    <span class="block text-base font-serif text-brand-primary mb-1">Organic Wild</span>
+                    <span class="text-[10px] text-text-secondary">Local Caught Proteins</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Preview Card & Form (Right) -->
+            <div class="bg-white rounded-xl border border-border-soft p-6 md:p-8 shadow-lg flex flex-col justify-between h-full min-h-[420px]">
+              <div>
+                <div class="flex items-center justify-between border-b border-border-soft pb-4 mb-6">
+                  <span class="text-brand-primary text-xs uppercase tracking-widest font-bold">Your Custom Itinerary</span>
+                  <span class="bg-brand-accent/10 text-brand-accent text-[10px] font-bold uppercase px-2.5 py-1 rounded-full">Aetheria Curated</span>
+                </div>
+                
+                <!-- Itinerary Preview Details -->
+                <div id="itinerary-preview" class="space-y-4">
+                  <h3 id="preview-title" class="text-2xl font-serif text-text-primary font-semibold">3-Day Weekend Reset Retreat</h3>
+                  <p id="preview-desc" class="text-text-secondary text-sm leading-relaxed">
+                    Designed to break the cycle of stress and reconnect you with basic breathing. A gentle weekend decompression.
+                  </p>
+                  
+                  <div class="space-y-2.5 pt-2">
+                    <div class="flex items-start gap-3">
+                      <span class="text-brand-primary font-semibold">✓</span>
+                      <span id="preview-focus" class="text-xs text-text-secondary">Daily guided Vipassana meditation &amp; forest walks.</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="text-brand-primary font-semibold">✓</span>
+                      <span id="preview-duration" class="text-xs text-text-secondary">3 private wellness sessions &amp; thermal bath access.</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="text-brand-primary font-semibold">✓</span>
+                      <span id="preview-food" class="text-xs text-text-secondary">Fully plant-based organic meals with locally foraged herbs.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reservation Inquiry Form -->
+              <form id="retreat-inquiry-form" class="mt-8 pt-6 border-t border-border-soft space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 bg-neutral-background text-text-primary text-sm rounded-lg border border-border-soft focus:outline-none focus:border-brand-primary transition-all">
+                  <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 bg-neutral-background text-text-primary text-sm rounded-lg border border-border-soft focus:outline-none focus:border-brand-primary transition-all">
+                </div>
+                <button type="submit" class="w-full bg-brand-primary text-brand-secondary rounded-full py-3.5 text-sm font-semibold hover:opacity-90 transition-all cursor-pointer shadow-cta">
+                  Send Booking Inquiry
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-brand-primary text-brand-secondary pt-24 pb-12 overflow-hidden">
+      <div class="max-w-[1728px] mx-auto px-6 md:px-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/10 pb-16" data-animation-on-scroll="" data-animation-direction="left">
+          <div class="col-span-1 md:col-span-1">
+            <h3 class="text-2xl font-bold tracking-widest uppercase font-serif mb-6" data-animate-heading="">Aetheria</h3>
+            <p class="text-brand-secondary/70 text-sm leading-relaxed max-w-xs" data-animate-heading="">
+              A sanctuary for the senses. We cultivate stillness, connection, and deep elemental healing in the world's most serene environments.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm uppercase mb-6 tracking-wider" data-animate-heading="">Locations</h4>
+            <ul class="space-y-4 text-sm text-brand-secondary/70">
+              <li><a href="#" class="hover:text-white">Big Sur, California</a></li>
+              <li><a href="#" class="hover:text-white">Swiss Alps, Zermatt</a></li>
+              <li><a href="#" class="hover:text-white">Kyoto, Japan</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm uppercase mb-6 tracking-wider" data-animate-heading="">Experiences</h4>
+            <ul class="space-y-4 text-sm text-brand-secondary/70">
+              <li><a href="#" class="hover:text-white">Thermal Springs</a></li>
+              <li><a href="#" class="hover:text-white">Vipassana Meditation</a></li>
+              <li><a href="#" class="hover:text-white">Botanical Culinary</a></li>
+              <li><a href="#" class="hover:text-white">Sound Bath Healing</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm uppercase mb-6 tracking-wider" data-animate-heading="">Connect</h4>
+            <ul class="space-y-4 text-sm text-brand-secondary/70">
+              <li><a href="#" class="hover:text-white">Sanctuary Journal</a></li>
+              <li><a href="#" class="hover:text-white">Instagram Sanctuary</a></li>
+              <li><a href="#" class="hover:text-white">Guest Portal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.2em] font-medium text-brand-secondary/40" data-animation-on-scroll="" data-animation-direction="right">
+          <p>© 2026 Aetheria Sanctuary. All Rights Reserved.</p>
+          <div class="flex gap-8">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms of Care</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Prepare Word-by-Word Headings (Preserving whole words)
+      document.querySelectorAll('[data-animate-heading]').forEach(heading => {
+        const text = heading.textContent.trim().split(/\s+/);
+        heading.innerHTML = '';
+
+        text.forEach((word, wordIdx) => {
+          const span = document.createElement('span');
+          span.textContent = word;
+          span.className = 'char';
+          span.style.transitionDelay = `${wordIdx * 0.12}s`;
+          heading.appendChild(span);
+
+          if (wordIdx < text.length - 1) {
+            const space = document.createElement('span');
+            space.innerHTML = '&nbsp;';
+            heading.appendChild(space);
+          }
+        });
+      });
+
+      // 2. Setup Scroll Observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-on-scroll-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('[data-animation-on-scroll]').forEach(el => {
+        el.classList.add('animate-on-scroll-hidden');
+        if (el.dataset.animationDirection === 'left') {
+          el.classList.add('animate-from-left');
+        } else if (el.dataset.animationDirection === 'right') {
+          el.classList.add('animate-from-right');
+        }
+        observer.observe(el);
+      });
+
+      // 3. Interactive Retreat Planner Logic
+      const plannerConfig = {
+        duration: {
+          '3-day': { title: '3-Day Weekend Reset Retreat', desc: 'Designed to break the cycle of stress and reconnect you with basic breathing. A gentle weekend decompression.', val: '3 private wellness sessions & thermal pool access.' },
+          '5-day': { title: '5-Day Grounding Retreat', desc: 'A deeper immersion to slow down neural activity, align your bio-rhythms, and restore core energy reservoirs.', val: '5 private sessions, forest bathing & stargazing.' },
+          '7-day': { title: '7-Day Transformation Journey', desc: 'A full elemental alignment process. Deconstruct chronic physical and cognitive stress patterns with deep integration work.', val: 'Unlimited thermal baths, 7 private sessions, & integration ceremonies.' }
+        },
+        focus: {
+          'mind': { name: 'Mindfulness & Calm Focus', val: 'Daily guided Vipassana meditation, silent hours & forest walks.' },
+          'body': { name: 'Physical Restoration Focus', val: 'Therapeutic bodywork, targeted thermal therapies & restorative alignment.' },
+          'spirit': { name: 'Spiritual Awakening Focus', val: 'Guided vibration sound baths, breathwork, and sensory floatation.' }
+        },
+        food: {
+          'plant': { name: 'Plant-Based Cuisine', val: 'Fully plant-based organic meals with locally foraged herbs.' },
+          'cleanse': { name: 'Liquid Nourishment Cleanse', val: 'All cold-pressed custom organic juices & medicinal herbal broths.' },
+          'organic': { name: 'Organic Artisanal Proteins', val: 'Biodynamic chef-cooked meals featuring local wild-caught proteins & gardens.' }
+        }
+      };
+
+      let activeDuration = '3-day';
+      let activeFocus = 'mind';
+      let activeFood = 'plant';
+
+      const updateItinerary = () => {
+        const previewTitle = document.getElementById('preview-title');
+        const previewDesc = document.getElementById('preview-desc');
+        const previewFocus = document.getElementById('preview-focus');
+        const previewDuration = document.getElementById('preview-duration');
+        const previewFood = document.getElementById('preview-food');
+
+        const durInfo = plannerConfig.duration[activeDuration];
+        const focusInfo = plannerConfig.focus[activeFocus];
+        const foodInfo = plannerConfig.food[activeFood];
+
+        previewTitle.textContent = durInfo.title;
+        previewDesc.textContent = durInfo.desc;
+        previewFocus.textContent = focusInfo.val;
+        previewDuration.textContent = durInfo.val;
+        previewFood.textContent = foodInfo.val;
+      };
+
+      document.querySelectorAll('.planner-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const btnType = btn.dataset.type;
+          const btnVal = btn.dataset.val;
+
+          // Remove active styles from siblings
+          const siblings = btn.parentElement.querySelectorAll('.planner-btn');
+          siblings.forEach(sib => {
+            sib.classList.remove('active-plan-btn', 'border-brand-primary', 'bg-brand-secondary/50');
+          });
+
+          // Add active style to current button
+          btn.classList.add('active-plan-btn', 'border-brand-primary', 'bg-brand-secondary/50');
+
+          if (btnType === 'duration') activeDuration = btnVal;
+          if (btnType === 'focus') activeFocus = btnVal;
+          if (btnType === 'food') activeFood = btnVal;
+
+          updateItinerary();
+        });
+      });
+
+      // Handle Inquiry Form Submission
+      const inquiryForm = document.getElementById('retreat-inquiry-form');
+      inquiryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for initiating your journey. Our retreat coordinators will connect with you within 24 hours to design your custom path.');
+        inquiryForm.reset();
+      });
+
+      // 4. Synthesized Ambient Soundscape Player (Web Audio API)
+      const soundBtn = document.getElementById('soundscape-btn');
+      const soundText = document.getElementById('soundscape-text');
+      const soundBars = document.getElementById('soundscape-bars').querySelectorAll('.bar');
+      
+      let audioCtx = null;
+      let activeSources = [];
+      let isPlaying = false;
+      let barInterval = null;
+
+      const createPinkNoiseBuffer = (ctx) => {
+        const bufferSize = 2 * ctx.sampleRate;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + white * 0.0555179;
+          b1 = 0.99332 * b1 + white * 0.0750759;
+          b2 = 0.96900 * b2 + white * 0.1538520;
+          b3 = 0.86650 * b3 + white * 0.3104856;
+          b4 = 0.55000 * b4 + white * 0.5329522;
+          b5 = -0.7616 * b5 - white * 0.0168980;
+          output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+          output[i] *= 0.11; // scaling factor
+          b6 = white * 0.115926;
+        }
+        return noiseBuffer;
+      };
+
+      const startAudio = () => {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        // Noise waves generator
+        const noiseBuffer = createPinkNoiseBuffer(audioCtx);
+        const noiseSource = audioCtx.createBufferSource();
+        noiseSource.buffer = noiseBuffer;
+        noiseSource.loop = true;
+
+        const waveFilter = audioCtx.createBiquadFilter();
+        waveFilter.type = 'lowpass';
+        waveFilter.frequency.setValueAtTime(250, audioCtx.currentTime);
+
+        const waveGain = audioCtx.createGain();
+        waveGain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+
+        // LFO to modulate filter cutoff & gain (simulating wave rhythms)
+        const lfo = audioCtx.createOscillator();
+        lfo.type = 'sine';
+        lfo.frequency.setValueAtTime(0.07, audioCtx.currentTime); // slow wave cycle: ~14s
+
+        const lfoFilterGain = audioCtx.createGain();
+        lfoFilterGain.gain.setValueAtTime(150, audioCtx.currentTime); // sweep range
+
+        const lfoGainAmp = audioCtx.createGain();
+        lfoGainAmp.gain.setValueAtTime(0.04, audioCtx.currentTime); // volume sway
+
+        lfo.connect(lfoFilterGain);
+        lfoFilterGain.connect(waveFilter.frequency);
+
+        lfo.connect(lfoGainAmp);
+        lfoGainAmp.connect(waveGain.gain);
+
+        noiseSource.connect(waveFilter);
+        waveFilter.connect(waveGain);
+        waveGain.connect(audioCtx.destination);
+
+        // Warm harmonic drone (Cs & Gs)
+        const droneFilter = audioCtx.createBiquadFilter();
+        droneFilter.type = 'lowpass';
+        droneFilter.frequency.setValueAtTime(180, audioCtx.currentTime);
+
+        const droneGain = audioCtx.createGain();
+        droneGain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+
+        const osc1 = audioCtx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(130.81, audioCtx.currentTime); // C3
+
+        const osc2 = audioCtx.createOscillator();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(196.00, audioCtx.currentTime); // G3
+
+        osc1.connect(droneFilter);
+        osc2.connect(droneFilter);
+        droneFilter.connect(droneGain);
+        droneGain.connect(audioCtx.destination);
+
+        // Start all oscillators/sources
+        noiseSource.start();
+        lfo.start();
+        osc1.start();
+        osc2.start();
+
+        activeSources = [noiseSource, lfo, osc1, osc2];
+        isPlaying = true;
+        
+        soundText.textContent = "Mute Soundscape";
+        
+        // Animate Bars
+        barInterval = setInterval(() => {
+          soundBars.forEach(bar => {
+            const scale = 0.2 + Math.random() * 0.8;
+            bar.style.transform = `scaleY(${scale})`;
+          });
+        }, 180);
+      };
+
+      const stopAudio = () => {
+        activeSources.forEach(source => {
+          try { source.stop(); } catch(e) {}
+        });
+        activeSources = [];
+        isPlaying = false;
+        
+        soundText.textContent = "Play Soundscape";
+        
+        // Reset Bars
+        clearInterval(barInterval);
+        soundBars.forEach(bar => {
+          bar.style.transform = 'scaleY(0.5)';
+        });
+      };
+
+      soundBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          stopAudio();
+        } else {
+          startAudio();
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>
